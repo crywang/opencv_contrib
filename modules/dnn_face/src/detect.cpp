@@ -19,8 +19,7 @@ class DNNFaceDetectorImpl : public DNNFaceDetector
 {
 public:
     DNNFaceDetectorImpl(const String& onnx_path,
-                        const int input_width,
-                        const int input_height,
+                        const Size& input_size,
                         const float score_threshold = 0.9,
                         const float nms_threshold = 0.3,
                         const int top_k = 5000,
@@ -33,8 +32,8 @@ public:
         net.setPreferableBackend(backend_id);
         net.setPreferableTarget(target_id);
 
-        img_w = input_width;
-        img_h = input_height;
+        img_w = input_size.width;
+        img_h = input_size.height;
 
         scoreThreshold = score_threshold;
         nmsThreshold = nms_threshold;
@@ -223,15 +222,14 @@ private:
 };
 
 Ptr<DNNFaceDetector> DNNFaceDetector::create(const String& onnx_path,
-                                             const int input_width,
-                                             const int input_height,
+                                             const Size& shape,
                                              const float score_threshold,
                                              const float nms_threshold,
                                              const int top_k,
                                              const int backend_id,
                                              const int target_id)
 {
-    return makePtr<DNNFaceDetectorImpl>(onnx_path, input_width, input_height, score_threshold, nms_threshold, top_k, backend_id, target_id);
+    return makePtr<DNNFaceDetectorImpl>(onnx_path, shape, score_threshold, nms_threshold, top_k, backend_id, target_id);
 }
 
 } // namespace dnn_face

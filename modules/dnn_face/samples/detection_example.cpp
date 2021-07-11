@@ -29,7 +29,7 @@ int main(int argc, char ** argv)
     int top_k = 5000;
 
     // Initialize DNNFaceDetector
-    Ptr<dnn_face::DNNFaceDetector> faceDetector = dnn_face::DNNFaceDetector::create(onnx_path, image.cols, image.rows, score_thresh, nms_thresh, top_k);
+    Ptr<dnn_face::DNNFaceDetector> faceDetector = dnn_face::DNNFaceDetector::create(onnx_path, image.size(), score_thresh, nms_thresh, top_k);
 
     // Forward
     Mat faces = faceDetector->forward(image);

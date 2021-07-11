@@ -23,13 +23,12 @@ class CV_EXPORTS_W DNNFaceDetector
         CV_WRAP virtual Mat forward(const Mat& image) = 0;
 
         CV_WRAP static Ptr<DNNFaceDetector> create(const String& onnx_path,
-                                           const int input_width,
-                                           const int input_height,
-                                           const float score_threshold = 0.9,
-                                           const float nms_threshold = 0.3,
-                                           const int top_k = 5000,
-                                           const int backend_id = 0,
-                                           const int target_id = 0);
+                                                   const Size& input_size,
+                                                   const float score_threshold = 0.9,
+                                                   const float nms_threshold = 0.3,
+                                                   const int top_k = 5000,
+                                                   const int backend_id = 0,
+                                                   const int target_id = 0);
 };
 
 } // namespace dnn_face
