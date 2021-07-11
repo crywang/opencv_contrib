@@ -42,7 +42,7 @@ public:
         generatePriors();
     }
 
-    Mat forward(const Mat& image) override
+    Mat detect(const Mat& image) override
     {
         // Build blob from input image
         Mat blob = dnn::blobFromImage(image);

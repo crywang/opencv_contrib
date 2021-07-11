@@ -32,7 +32,7 @@ int main(int argc, char ** argv)
     Ptr<dnn_face::DNNFaceDetector> faceDetector = dnn_face::DNNFaceDetector::create(onnx_path, image.size(), score_thresh, nms_thresh, top_k);
 
     // Forward
-    Mat faces = faceDetector->forward(image);
+    Mat faces = faceDetector->detect(image);
 
     // Visualize results
     const int thickness = 2;
