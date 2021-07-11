@@ -17,7 +17,7 @@ DNNFaceRecognizer::DNNFaceRecognizer(const String& onnx_path)
 Mat DNNFaceRecognizer::facefeature(Mat face_image){
     Mat inputBolb = dnn::blobFromImage(face_image, 1, Size(112, 112), Scalar(0, 0, 0), true, false);
     this->model.setInput(inputBolb);
-    return this->model.forward().row(0).clone();
+    return this->model.forward().clone();
 }
 
 float DNNFaceRecognizer::facematch(Mat featureVec1, Mat featureVec2, const String& distance){
